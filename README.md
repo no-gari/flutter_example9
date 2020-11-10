@@ -3,4 +3,4 @@
 
 # BMI Calculator 💪
 
-for my personal flutter study
+for my personal flutter study/ for commit
