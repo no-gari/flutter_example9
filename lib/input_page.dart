@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const double bottomContainerHeight = 80.0;
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -42,6 +44,12 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
+            Container(
+              width: double.infinity,
+              height: bottomContainerHeight,
+              color: Color(0xFFEB1555),
+              margin: EdgeInsets.only(top: 10.0),
+            ),
           ]
         ),
     );
@@ -51,7 +59,7 @@ class _InputPageState extends State<InputPage> {
 class Reusable extends StatelessWidget {
   Reusable({this.colour = const Color(0xFF1D1E33)});
 
-  Color colour;
+  final Color colour;
 
   @override
   Widget build(BuildContext context) {
