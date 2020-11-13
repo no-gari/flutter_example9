@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const double IconSize = 80.0;
-const double BoxSize = 15.0;
+import 'Constants.dart';
 
 class IconContents extends StatelessWidget {
   IconContents({this.gender = 'Male', this.genderIcon = FontAwesomeIcons.mars});
@@ -15,9 +13,9 @@ class IconContents extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Icon(genderIcon, size: IconSize,),
-        SizedBox(height: BoxSize,),
-        Text(gender, style: TextStyle(color: Color(0xFF8D8E98)), ),
+        Icon(genderIcon, size: kIconSize,),
+        SizedBox(height: kBoxSize,),
+        Text(gender, style: kLabelTextStyle),
       ],
     );
   }

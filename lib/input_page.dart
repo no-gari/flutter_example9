@@ -1,11 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconContents.dart';
 import 'Reusable_Card.dart';
-
-const double bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
+import 'Constants.dart';
 
 enum Gender {
   male,
@@ -20,6 +18,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class _InputPageState extends State<InputPage> {
                               selectedGender = Gender.male;
                             });
                           },
-                          colour: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
+                          colour: selectedGender == Gender.male ? kActiveCardColor : kInactiveCardColor,
                           cardChild: IconContents(),
                           ),
                         ),
@@ -51,7 +50,7 @@ class _InputPageState extends State<InputPage> {
                             selectedGender = Gender.female;
                           });
                         },
-                        colour: selectedGender == Gender.female ? activeCardColor : inactiveCardColor,
+                        colour: selectedGender == Gender.female ? kActiveCardColor : kInactiveCardColor,
                         cardChild: IconContents(gender: 'Female', genderIcon: FontAwesomeIcons.venus,),
                         ),
                     ),
@@ -59,23 +58,54 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
-              child: Reusable(colour: activeCardColor,),
+              child: Reusable(
+                colour: kActiveCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text('HEIGHT', style: kLabelTextStyle),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      children: <Widget>[
+                        Text(height.toString(), style: kSliderTextStyle),
+                        Text('cm', style: kLabelTextStyle,),
+                      ],
+                    ),
+                    SliderTheme(
+                      data: SliderThemeData(
+                          trackHeight: 1, thumbColor: Color(0xFFEB1555), overlayColor: Color(0x15EB1555),
+                      activeTrackColor: Colors.white, inactiveTrackColor: Colors.grey,),
+                      child: Slider(
+                          value: height.toDouble() ,
+                          min: 120.0, max: 220.0,
+                          onChanged: (double newValue) {
+                            print(height);
+                            setState(() {
+                              height = newValue.toInt();
+                            });
+                          }),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: Reusable(colour: activeCardColor,),
+                    child: Reusable(colour: kActiveCardColor,),
                   ),
                   Expanded(
-                    child: Reusable(colour: activeCardColor,),
+                    child: Reusable(colour: kActiveCardColor,),
                   ),
                 ],
               ),
             ),
             Container(
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kBottomContainerHeight,
               color: Color(0xFFEB1555),
               margin: EdgeInsets.only(top: 10.0),
             ),
