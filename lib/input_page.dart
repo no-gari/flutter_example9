@@ -4,6 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconContents.dart';
 import 'Reusable_Card.dart';
 import 'Constants.dart';
+import 'results_page.dart';
+import 'bottom_button.dart';
+import 'round_icon_button.dart';
 
 enum Gender {
   male,
@@ -130,7 +133,29 @@ class _InputPageState extends State<InputPage> {
                     child: Reusable(
                       colour: kActiveCardColor,
                       cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Text('AGE', style: kLabelTextStyle,),
+                          Text(age.toString(), style: kSliderTextStyle,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(buttonIcon: Icon(FontAwesomeIcons.minus),
+                                  onPressed: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  }),
+                              SizedBox(width: 10.0,),
+                              RoundIconButton(buttonIcon: Icon(FontAwesomeIcons.plus),
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -138,36 +163,14 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              color: Color(0xFFEB1555),
-              margin: EdgeInsets.only(top: 10.0),
+            BottomButton(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ResultsPage()));
+              },
+              buttonTitle: 'CALCULATE',
             ),
           ]
         ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.buttonIcon, this.onPressed});
-
-  final Icon buttonIcon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0
-      ),
-      shape: CircleBorder(),
-        child: buttonIcon,
-        fillColor: Color(0xFF4C4F5E),
-        onPressed: onPressed
     );
   }
 }
