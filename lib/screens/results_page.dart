@@ -1,7 +1,8 @@
+import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Constants.dart';
-import 'Reusable_Card.dart';
+import '../Constants.dart';
+import '../components/Reusable_Card.dart';
 
 class ResultsPage extends StatelessWidget {
   @override
@@ -15,8 +16,9 @@ class ResultsPage extends StatelessWidget {
           Expanded(
               child: Container(
                 child: Text('Your Results',
-                style: kTitleTextStyle,),
-              )),
+                style: kTitleTextStyle,
+                textAlign: TextAlign.center,
+                ),),),
           Expanded(
             flex: 5,
             child: Reusable(
@@ -36,7 +38,12 @@ class ResultsPage extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+          BottomButton(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              buttonTitle: 'RE-CAULCULATE')
         ],
       ),
     );

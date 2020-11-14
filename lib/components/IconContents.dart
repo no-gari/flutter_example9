@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'Constants.dart';
+import '../Constants.dart';
 
 class IconContents extends StatelessWidget {
   IconContents({this.gender = 'Male', this.genderIcon = FontAwesomeIcons.mars});
